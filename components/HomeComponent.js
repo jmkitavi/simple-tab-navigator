@@ -1,0 +1,44 @@
+import React, {Component} from 'react'
+import { Button, Text, View } from 'react-native'
+import { Icon } from 'react-native-elements';
+
+const backgroundColor = '#0067a7'
+export default class HomeComponent extends Component {
+  static navigationOptions  = ({ navigation }) => {
+    const { params = {} } = navigation.state
+    let tabBarLabel = 'Home'
+    let tabBarIcon = () => (
+      <Icon
+        name='home'
+        size={32}
+        color={backgroundColor}
+        style={{ tintColor: backgroundColor}}
+      />
+    )
+    return { tabBarLabel, tabBarIcon}
+  }
+  render() {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: backgroundColor,
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Text style={{ fontWeight: 'bold', fontSize: 22, color: 'white'}}>
+          Home Component
+        </Text>
+        <Button
+          title='Info'
+          onPress={() => {
+            console.log('this', JSON.stringify(this.props.navigation))
+            const { navigate } = this.props.navigation
+            navigate('Info') 
+          }}
+        />
+      </View>
+    )
+  }
+}
